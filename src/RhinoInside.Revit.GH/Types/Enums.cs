@@ -130,7 +130,17 @@ namespace RhinoInside.Revit.GH.Types
     Name("View Discipline"),
     Description("Represents a Revit view discipline."),
   ]
-  public class ViewDiscipline : GH_Enum<DB.ViewDiscipline> { }
+  public class ViewDiscipline : GH_Enum<DBX.ViewDiscipline> {
+    public override string Text
+    {
+      get
+      {
+        if (Enum.IsDefined(typeof(DBX.ViewDiscipline), this.Value))
+          return Value.ToString().Humanify();
+        return base.Text;
+      }
+    }
+  }
 
   [
     ComponentGuid("485C3278-0D1A-445D-B3DA-75FB8CD38CF9"),
